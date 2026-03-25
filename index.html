@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#07070f"/>
+  <title>FlickFire · AI Adult Drama — Wild Plots. Explicit Scenes.</title>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+    :root{
+      --red:#ff2d55;--pink:#f03fa0;--purple:#9b3fdf;
+      --dark:#07070f;--card:#0f0f1c;--card2:#13131f;
+      --grad:linear-gradient(135deg,#ff2d55,#f03fa0,#9b3fdf);
+      --grad2:linear-gradient(135deg,#ff2d55,#f03fa0);
+    }
+    html,body{background:var(--dark);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    body{padding-bottom:88px;}
+
+    /* ─── HERO ─── */
+    .hero{position:relative;height:100svh;min-height:620px;overflow:hidden;}
+    .hero-video{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;object-position:center top;z-index:0;
+    }
+    .hero-bg{
+      position:absolute;inset:0;z-index:1;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(255,45,85,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(155,63,223,0.12) 0%, transparent 60%);
+    }
+    .hero-silhouette{display:none;}
+    .hero-overlay{
+      position:absolute;inset:0;z-index:2;
+      background:linear-gradient(to bottom,rgba(7,7,15,0.55) 0%,rgba(7,7,15,0.0) 25%,rgba(7,7,15,0.0) 40%,rgba(7,7,15,0.72) 65%,rgba(7,7,15,0.98) 100%);
+    }
+    .particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3;}
+    .p{position:absolute;border-radius:50%;animation:float linear infinite;}
+    @keyframes float{0%{transform:translateY(0) scale(1);opacity:.6}50%{opacity:.2}100%{transform:translateY(-120vh) scale(.4);opacity:0}}
+
+    .hero-nav{
+      position:absolute;top:0;left:0;right:0;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 20px;z-index:10;
+    }
+    /* ─── LANG SWITCHER ─── */
+    .lang-switcher{
+      display:flex;align-items:center;gap:4px;
+      background:rgba(7,7,15,0.6);border:1px solid rgba(255,255,255,0.1);
+      border-radius:999px;padding:4px;backdrop-filter:blur(14px);
+    }
+    .lang-btn{
+      padding:5px 11px;border-radius:999px;font-size:11px;font-weight:700;
+      border:none;background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;
+      transition:all .2s;
+    }
+    .lang-btn.active{background:var(--grad);color:#fff;}
+    .logo{
+      display:flex;align-items:center;gap:8px;
+      font-size:18px;font-weight:900;letter-spacing:-.02em;
+      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .logo-icon{
+      width:28px;height:28px;border-radius:8px;
+      background:var(--grad);
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;flex-shrink:0;
+    }
+    .live-badge{
+      display:flex;align-items:center;gap:6px;
+      background:rgba(255,45,85,0.12);
+      border:1px solid rgba(255,45,85,0.35);
+      border-radius:999px;padding:7px 14px;
+      font-size:12px;font-weight:700;color:#ff7096;
+      backdrop-filter:blur(12px);
+    }
+    .live-dot{width:7px;height:7px;border-radius:50%;background:#ff2d55;animation:blink 1.4s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:1;box-shadow:0 0 6px #ff2d55}50%{opacity:.1;box-shadow:none}}
+
+    .hero-content{position:absolute;bottom:0;left:0;right:0;padding:0 22px 32px;z-index:4;}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:7px;
+      background:rgba(255,45,85,0.12);border:1px solid rgba(255,45,85,0.3);
+      border-radius:999px;padding:6px 15px;
+      font-size:12px;font-weight:700;color:#ff7096;margin-bottom:16px;
+    }
+    .hero h1{
+      font-size:clamp(34px,9.5vw,52px);
+      font-weight:900;line-height:1.06;letter-spacing:-.025em;margin-bottom:12px;
+    }
+    .hero h1 .hl{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero-sub{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65;margin-bottom:24px;max-width:360px;}
+    .hero-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;background:var(--grad);color:#fff;
+      font-size:17px;font-weight:800;padding:18px 20px;border-radius:18px;
+      border:none;cursor:pointer;letter-spacing:.01em;
+      box-shadow:0 10px 48px rgba(255,45,85,0.48);
+      position:relative;overflow:hidden;
+    }
+    .hero-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.14),transparent);}
+    .hero-btn .pulse{
+      position:absolute;inset:0;border-radius:18px;
+      animation:pulse 2s ease-out infinite;
+    }
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,45,85,0.5)}70%{box-shadow:0 0 0 18px rgba(255,45,85,0)}100%{box-shadow:0 0 0 0 rgba(255,45,85,0)}}
+    .hero-micro{display:flex;justify-content:center;gap:18px;margin-top:13px;font-size:11px;color:rgba(255,255,255,0.3);}
+    .hero-micro span::before{content:'✓ ';color:var(--red);}
+
+    /* ─── TICKER ─── */
+    .ticker-wrap{
+      background:rgba(255,45,85,0.08);
+      border-top:1px solid rgba(255,45,85,0.15);
+      border-bottom:1px solid rgba(255,45,85,0.1);
+      overflow:hidden;padding:10px 0;
+    }
+    .ticker{display:flex;white-space:nowrap;animation:tickscroll 24s linear infinite;}
+    .ticker:hover{animation-play-state:paused;}
+    @keyframes tickscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .tick-item{display:inline-flex;align-items:center;gap:8px;padding:0 28px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.45);}
+    .tick-item .dot{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;}
+
+    /* ─── SECTIONS ─── */
+    .section{padding:36px 0 8px;}
+    .sec-head{padding:0 20px;margin-bottom:20px;}
+    .sec-label{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+    .sec-title{font-size:23px;font-weight:900;letter-spacing:-.015em;}
+    .sec-sub{font-size:13px;color:#4a4460;margin-top:5px;}
+
+    /* ─── FEATURED DRAMA HERO CARD ─── */
+    .drama-hero{
+      margin:0 20px 28px;border-radius:22px;overflow:hidden;
+      position:relative;aspect-ratio:16/9;background:var(--card2);
+      border:1px solid rgba(255,45,85,0.12);
+      box-shadow:0 20px 60px rgba(255,45,85,0.12);
+    }
+    .drama-hero-bg{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(255,45,85,0.15) 0%,rgba(155,63,223,0.1) 100%),var(--card2);
+    }
+    .drama-hero-deco{position:absolute;inset:0;overflow:hidden;}
+    .drama-hero-deco::before{
+      content:'';position:absolute;right:-30px;top:-20px;
+      width:200px;height:250px;
+      background:linear-gradient(135deg,rgba(255,45,85,0.12),rgba(240,63,160,0.08));
+      border-radius:40% 60% 55% 45%;filter:blur(25px);
+    }
+    .drama-hero-deco::after{
+      content:'';position:absolute;left:10%;bottom:-10px;
+      width:160px;height:120px;
+      background:linear-gradient(135deg,rgba(155,63,223,0.1),rgba(255,45,85,0.06));
+      border-radius:50%;filter:blur(20px);
+    }
+    .drama-hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to right,rgba(7,7,15,0.95) 0%,rgba(7,7,15,0.5) 55%,transparent 100%);
+    }
+    .drama-hero-info{
+      position:absolute;left:0;top:0;bottom:0;
+      display:flex;flex-direction:column;justify-content:center;
+      padding:20px 22px;max-width:62%;
+    }
+    .drama-tag{
+      display:inline-flex;align-items:center;gap:5px;
+      background:rgba(255,45,85,0.2);border:1px solid rgba(255,45,85,0.4);
+      border-radius:999px;padding:4px 12px;
+      font-size:10px;font-weight:800;color:#ff7096;
+      margin-bottom:12px;width:fit-content;letter-spacing:.05em;
+    }
+    .drama-hero-info h2{font-size:20px;font-weight:900;line-height:1.15;margin-bottom:8px;}
+    .drama-meta{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+    .drama-rating{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#ffd700;}
+    .drama-ep{font-size:11px;color:rgba(255,255,255,0.4);}
+    .play-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--grad2);color:#fff;font-size:13px;font-weight:800;
+      padding:10px 18px;border-radius:12px;border:none;cursor:pointer;
+      width:fit-content;box-shadow:0 6px 24px rgba(255,45,85,0.4);text-decoration:none;
+    }
+    .free-tag{
+      position:absolute;top:14px;right:14px;
+      background:linear-gradient(135deg,#00c875,#00a65a);
+      color:#fff;font-size:11px;font-weight:800;
+      padding:5px 12px;border-radius:999px;
+      box-shadow:0 4px 14px rgba(0,200,117,0.4);
+    }
+
+    /* ─── EPISODE LIST ─── */
+    .ep-list{padding:0 20px;display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+    .ep-row{
+      display:flex;align-items:center;gap:14px;
+      background:var(--card);border:1px solid rgba(255,255,255,0.05);
+      border-radius:16px;padding:14px 16px;
+      position:relative;overflow:hidden;cursor:pointer;transition:border-color .2s;
+    }
+    .ep-row.locked{opacity:.8;}
+    .ep-row.locked::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(7,7,15,0.6));}
+    .ep-row:not(.locked){border-color:rgba(255,45,85,0.18);}
+    .ep-thumb{
+      flex-shrink:0;width:58px;height:42px;border-radius:10px;
+      background:linear-gradient(135deg,rgba(255,45,85,0.2),rgba(155,63,223,0.15));
+      display:flex;align-items:center;justify-content:center;font-size:22px;
+      position:relative;overflow:hidden;
+    }
+    .ep-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,45,85,0.08),transparent);}
+    .ep-info{flex:1;min-width:0;}
+    .ep-num{font-size:10px;font-weight:700;color:var(--red);margin-bottom:3px;letter-spacing:.06em;}
+    .ep-title{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ep-desc{font-size:11px;color:#3a3458;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ep-right{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+    .ep-dur{font-size:11px;color:#3a3458;}
+    .free-pill{
+      background:rgba(0,200,117,0.12);border:1px solid rgba(0,200,117,0.3);
+      border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;color:#00c875;
+    }
+    .lock-pill{
+      display:flex;align-items:center;gap:4px;
+      background:rgba(255,45,85,0.1);border:1px solid rgba(255,45,85,0.25);
+      border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800;color:#ff5577;
+    }
+    .more-btn{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      margin:16px 20px 0;background:transparent;
+      border:1px solid rgba(255,45,85,0.25);border-radius:14px;padding:14px;
+      color:rgba(255,255,255,0.5);font-size:13px;font-weight:700;cursor:pointer;
+    }
+
+    /* ─── DRAMA CAROUSEL ─── */
+    .drama-carousel{
+      display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;
+      padding:0 20px 14px;scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    }
+    .drama-carousel::-webkit-scrollbar{display:none;}
+    .d-card{
+      flex:0 0 56vw;max-width:220px;scroll-snap-align:start;
+      border-radius:18px;overflow:hidden;position:relative;aspect-ratio:3/4;
+      background:var(--card2);cursor:pointer;border:1px solid rgba(255,255,255,0.04);
+    }
+    .d-card-bg{position:absolute;inset:0;}
+    .d-card-bg-1{background:linear-gradient(160deg,rgba(255,45,85,0.18) 0%,rgba(155,63,223,0.12) 50%,rgba(7,7,15,1) 100%);}
+    .d-card-bg-2{background:linear-gradient(160deg,rgba(155,63,223,0.18) 0%,rgba(255,45,85,0.1) 50%,rgba(7,7,15,1) 100%);}
+    .d-card-bg-3{background:linear-gradient(160deg,rgba(240,63,160,0.2) 0%,rgba(255,45,85,0.08) 50%,rgba(7,7,15,1) 100%);}
+    .d-card-bg-4{background:linear-gradient(160deg,rgba(100,63,223,0.2) 0%,rgba(240,63,160,0.1) 50%,rgba(7,7,15,1) 100%);}
+    .d-silhouette{position:absolute;inset:0;overflow:hidden;}
+    .d-silhouette::before{
+      content:'';position:absolute;left:50%;top:10%;transform:translateX(-50%);
+      width:70%;height:65%;background:rgba(255,255,255,0.02);
+      border-radius:40% 40% 35% 35% / 45% 45% 35% 35%;filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .d-card-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,15,.95) 0%,rgba(7,7,15,.3) 50%,transparent 100%);}
+    .d-card-top{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;align-items:flex-start;}
+    .d-badge{
+      background:rgba(7,7,15,0.65);border:1px solid rgba(255,255,255,0.1);
+      border-radius:8px;padding:3px 8px;font-size:10px;font-weight:700;
+      color:rgba(255,255,255,0.6);backdrop-filter:blur(8px);
+    }
+    .d-badge.hot{background:rgba(255,45,85,0.8);border-color:rgba(255,45,85,0.5);color:#fff;}
+    .d-card-body{position:absolute;bottom:0;left:0;right:0;padding:14px;}
+    .d-genre{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;}
+    .d-genre span{
+      background:rgba(255,45,85,0.18);border:1px solid rgba(255,45,85,0.35);
+      border-radius:999px;padding:2px 8px;font-size:9px;font-weight:700;color:#ff7096;
+    }
+    .d-card h3{font-size:14px;font-weight:900;margin-bottom:3px;line-height:1.2;}
+    .d-card p{font-size:11px;color:#4a4068;line-height:1.4;}
+    .d-lock{
+      position:absolute;bottom:14px;right:14px;background:rgba(255,45,85,0.85);
+      border-radius:999px;padding:5px 10px;font-size:10px;font-weight:800;color:#fff;backdrop-filter:blur(8px);
+    }
+
+    /* ─── STATS ─── */
+    .stats-section{padding:28px 20px;}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .stat-pill{
+      background:var(--card);border:1px solid rgba(255,255,255,0.05);
+      border-radius:18px;padding:20px 16px;text-align:center;position:relative;overflow:hidden;
+    }
+    .stat-pill::before{
+      content:'';position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+      width:80px;height:80px;background:radial-gradient(circle,rgba(255,45,85,0.12),transparent 70%);
+    }
+    .stat-pill .n{
+      font-size:30px;font-weight:900;
+      background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;
+    }
+    .stat-pill .l{font-size:12px;color:#3a3055;margin-top:5px;}
+
+    /* ─── PAYWALL BLOCK ─── */
+    .paywall{
+      margin:8px 20px 32px;
+      background:linear-gradient(135deg,rgba(255,45,85,0.08),rgba(155,63,223,0.08));
+      border:1px solid rgba(255,45,85,0.18);border-radius:22px;padding:28px 22px;
+      text-align:center;position:relative;overflow:hidden;
+    }
+    .paywall::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:radial-gradient(circle,rgba(255,45,85,0.12),transparent 70%);}
+    .paywall::after{content:'';position:absolute;bottom:-30px;left:-30px;width:120px;height:120px;background:radial-gradient(circle,rgba(155,63,223,0.12),transparent 70%);}
+    .paywall-icon{font-size:36px;margin-bottom:14px;display:block;}
+    .paywall h3{font-size:22px;font-weight:900;line-height:1.15;margin-bottom:8px;}
+    .paywall h3 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .paywall p{font-size:13px;color:#5a5070;line-height:1.6;margin-bottom:22px;}
+    .paywall-plans{display:flex;gap:10px;margin-bottom:20px;}
+    .plan{
+      flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+      border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;
+      transition:all .2s;position:relative;
+    }
+    .plan.best{border-color:rgba(255,45,85,0.45);background:rgba(255,45,85,0.07);}
+    .plan-best-tag{
+      position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+      background:var(--grad2);color:#fff;font-size:9px;font-weight:900;
+      padding:3px 10px;border-radius:999px;white-space:nowrap;
+    }
+    .plan-price{font-size:20px;font-weight:900;color:#fff;line-height:1.1;}
+    .plan-price sup{font-size:11px;vertical-align:top;margin-top:4px;}
+    .plan-period{font-size:10px;color:#4a4068;margin-top:3px;}
+    .plan-desc{font-size:10px;color:rgba(255,255,255,0.3);margin-top:5px;}
+    .unlock-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;background:var(--grad);color:#fff;font-size:16px;font-weight:900;
+      padding:18px 20px;border-radius:16px;border:none;cursor:pointer;
+      box-shadow:0 10px 40px rgba(255,45,85,0.45);position:relative;overflow:hidden;
+    }
+    .unlock-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);}
+    .paywall-micro{display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.2);}
+    .paywall-micro span::before{content:'✓ ';color:var(--red);}
+
+    /* ─── FEATURES ─── */
+    .features{padding:8px 20px 32px;}
+    .feat-title{font-size:20px;font-weight:900;text-align:center;margin-bottom:22px;}
+    .feat-grid{display:flex;flex-direction:column;gap:0;}
+    .feat-row{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+    .feat-row:last-child{border-bottom:none;}
+    .feat-icon{
+      flex-shrink:0;width:44px;height:44px;border-radius:14px;background:var(--grad);
+      display:flex;align-items:center;justify-content:center;font-size:20px;
+      box-shadow:0 6px 20px rgba(255,45,85,0.3);
+    }
+    .feat-row h4{font-size:15px;font-weight:800;margin-bottom:4px;}
+    .feat-row p{font-size:13px;color:#3d375a;line-height:1.5;}
+
+    /* ─── PRIVACY ─── */
+    .privacy{
+      background:linear-gradient(135deg,rgba(255,45,85,0.06),rgba(155,63,223,0.06));
+      border-top:1px solid rgba(255,45,85,0.1);border-bottom:1px solid rgba(255,45,85,0.1);
+      padding:28px 20px;
+    }
+    .priv-list{display:flex;flex-direction:column;gap:16px;}
+    .priv-row{display:flex;align-items:center;gap:14px;}
+    .priv-row .icon{font-size:22px;flex-shrink:0;}
+    .priv-row h4{font-size:14px;font-weight:800;}
+    .priv-row p{font-size:12px;color:#3d375a;line-height:1.4;margin-top:2px;}
+
+    /* ─── FINAL CTA ─── */
+    .final-cta{padding:40px 20px;text-align:center;}
+    .final-cta h2{font-size:28px;font-weight:900;line-height:1.12;margin-bottom:10px;}
+    .final-cta h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .final-cta p{font-size:13px;color:#4a4068;margin-bottom:26px;line-height:1.6;}
+    .final-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      width:100%;background:var(--grad);color:#fff;font-size:18px;font-weight:900;
+      padding:20px 20px;border-radius:18px;border:none;cursor:pointer;
+      box-shadow:0 12px 50px rgba(255,45,85,0.5);position:relative;overflow:hidden;
+    }
+    .final-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);}
+
+    footer{
+      padding:20px;text-align:center;font-size:11px;color:#201c30;
+      border-top:1px solid rgba(255,255,255,0.03);
+      padding-bottom:calc(20px + env(safe-area-inset-bottom));
+    }
+
+    /* ─── STICKY BAR ─── */
+    .sticky-bar{
+      position:fixed;bottom:0;left:0;right:0;z-index:999;
+      background:rgba(7,7,15,0.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      border-top:1px solid rgba(255,45,85,0.2);
+      padding:12px 18px;padding-bottom:calc(12px + env(safe-area-inset-bottom));
+      transition:opacity .3s,transform .3s;
+    }
+    .sticky-inner{display:flex;align-items:center;gap:12px;}
+    .sticky-copy{flex:1;}
+    .sticky-copy strong{font-size:14px;font-weight:900;display:block;line-height:1.2;}
+    .sticky-copy span{font-size:11px;color:#4a4068;}
+    .sticky-btn{
+      flex-shrink:0;background:var(--grad);color:#fff;font-size:14px;font-weight:900;
+      padding:14px 22px;border-radius:14px;border:none;cursor:pointer;white-space:nowrap;
+      box-shadow:0 5px 22px rgba(255,45,85,0.4);
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay{
+      position:fixed;inset:0;z-index:1000;
+      background:rgba(7,7,15,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      display:flex;align-items:flex-end;
+      opacity:0;pointer-events:none;transition:opacity .3s;
+    }
+    .modal-overlay.open{opacity:1;pointer-events:all;}
+    .modal-sheet{
+      width:100%;background:var(--card);border-radius:26px 26px 0 0;
+      border:1px solid rgba(255,45,85,0.15);border-bottom:none;
+      padding:28px 22px 40px;position:relative;
+      transform:translateY(100%);transition:transform .35s cubic-bezier(.32,.72,0,1);
+    }
+    .modal-overlay.open .modal-sheet{transform:translateY(0);}
+    .modal-handle{width:40px;height:4px;background:rgba(255,255,255,0.12);border-radius:999px;margin:0 auto 22px;}
+    .modal-title{font-size:22px;font-weight:900;text-align:center;margin-bottom:6px;}
+    .modal-title span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .modal-sub{font-size:13px;color:#4a4068;text-align:center;margin-bottom:24px;line-height:1.5;}
+    .modal-close{
+      position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.07);
+      border:none;border-radius:50%;width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:16px;color:rgba(255,255,255,0.4);cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="hero.mov" type="video/mp4"/>
+  </video>
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-overlay"></div>
+
+  <nav class="hero-nav" style="z-index:10;">
+    <div class="logo">
+      <div class="logo-icon">🔥</div>
+      FlickFire
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        18+ Only
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="eyebrow">🤖 AI-Generated · Wild Plots · Adult Only</div>
+    <h1 data-i18n-html="h1">Only a Group Sex Ritual<br/><span class="hl">Can Stop Satan.</span></h1>
+    <p class="hero-sub" data-i18n="sub">Not your average sex video. FlickFire is AI-scripted adult short drama — insane plots, forbidden scenarios, and scenes you've never imagined. First 3 episodes free.</p>
+    <button class="hero-btn" onclick="openModal()">
+      <div class="pulse"></div>
+      <span data-i18n="watchBtn">Watch Free Now →</span>
+    </button>
+    <div class="hero-micro">
+      <span data-i18n="micro1">First 3 free</span>
+      <span data-i18n="micro2">AI-generated</span>
+      <span data-i18n="micro3">Cancel anytime</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TICKER ─── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="tick-item"><span class="dot"></span>Not boring sex videos — AI-scripted plots so wild you won't believe what happens</span>
+    <span class="tick-item"><span class="dot"></span>«Sex Ritual to Stop the Apocalypse» — Ep. 6 Just Dropped 🔥</span>
+    <span class="tick-item"><span class="dot"></span>«Alien Queen Demands a Human Offering» — Trending Now</span>
+    <span class="tick-item"><span class="dot"></span>Think adult film but with a screenplay that breaks every rule</span>
+    <span class="tick-item"><span class="dot"></span>«Time-Traveled Into Her Bed» — Season Finale Live</span>
+    <span class="tick-item"><span class="dot"></span>AI-generated stories your wildest imagination forgot to write</span>
+    <span class="tick-item"><span class="dot"></span>Not boring sex videos — AI-scripted plots so wild you won't believe what happens</span>
+    <span class="tick-item"><span class="dot"></span>«Sex Ritual to Stop the Apocalypse» — Ep. 6 Just Dropped 🔥</span>
+    <span class="tick-item"><span class="dot"></span>«Alien Queen Demands a Human Offering» — Trending Now</span>
+    <span class="tick-item"><span class="dot"></span>Think adult film but with a screenplay that breaks every rule</span>
+  </div>
+</div>
+
+<!-- ═══ FEATURED DRAMA ═══ -->
+<section class="section">
+  <div class="sec-head">
+    <div class="sec-label">This Week's #1</div>
+    <div class="sec-title">Must-Watch Tonight</div>
+    <div class="sec-sub">First 3 episodes free · Unlock more below</div>
+  </div>
+
+  <div class="drama-hero">
+    <div class="drama-hero-bg"></div>
+    <div class="drama-hero-deco"></div>
+    <div class="drama-hero-overlay"></div>
+    <div class="drama-hero-info">
+      <div class="drama-tag" data-i18n="dramaTag">😈 #1 This Week · AI Drama</div>
+      <h2 data-i18n-html="dramaTitle">«Only a Group Sex Ritual<br/>Can Stop Satan»</h2>
+      <div class="drama-meta">
+        <div class="drama-rating">★★★★★ <span style="color:rgba(255,255,255,0.3);font-weight:400;margin-left:2px;">9.8</span></div>
+        <span class="drama-ep">20 eps · 3 min each</span>
+      </div>
+      <a href="#episodes" class="play-btn">▶ Watch Now</a>
+    </div>
+    <span class="free-tag">First 3 FREE</span>
+  </div>
+
+  <!-- Episode list -->
+  <div class="ep-list" id="episodes">
+
+    <div class="ep-row">
+      <div class="ep-thumb">🎬</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 01</div>
+        <div class="ep-title">Hell's Gate Opens</div>
+        <div class="ep-desc">A crack appears in the sky. Demons pour through. Only one prophecy stands between Earth and total annihilation…</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">3:24</div>
+        <div class="free-pill">Free</div>
+      </div>
+    </div>
+
+    <div class="ep-row">
+      <div class="ep-thumb">🎬</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 02</div>
+        <div class="ep-title">The Ancient Scroll</div>
+        <div class="ep-desc">The prophecy is translated. Satan can only be moved by one thing — and it has to happen before sunrise in the open wilderness…</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">3:11</div>
+        <div class="free-pill">Free</div>
+      </div>
+    </div>
+
+    <div class="ep-row">
+      <div class="ep-thumb">🎬</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 03</div>
+        <div class="ep-title">The Chosen Five</div>
+        <div class="ep-desc">Five strangers are selected by the prophecy. They meet under a blood moon. No one can believe what they're about to do to save humanity…</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">3:38</div>
+        <div class="free-pill">Free</div>
+      </div>
+    </div>
+
+    <div class="ep-row locked" onclick="openModal()">
+      <div class="ep-thumb">🔒</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 04</div>
+        <div class="ep-title">Into the Wild</div>
+        <div class="ep-desc">The ritual begins at the forest altar. Satan watches from the darkness. For the first time in 3,000 years… he hesitates.</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">3:52</div>
+        <div class="lock-pill">🔒 Unlock</div>
+      </div>
+    </div>
+
+    <div class="ep-row locked" onclick="openModal()">
+      <div class="ep-thumb">🔒</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 05</div>
+        <div class="ep-title">Satan Feels Something</div>
+        <div class="ep-desc">The Prince of Darkness hasn't felt emotion in millennia. But what he witnesses in that forest… breaks something open inside him.</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">4:05</div>
+        <div class="lock-pill">🔒 Unlock</div>
+      </div>
+    </div>
+
+    <div class="ep-row locked" onclick="openModal()">
+      <div class="ep-thumb">🔒</div>
+      <div class="ep-info">
+        <div class="ep-num">EP 06</div>
+        <div class="ep-title">Hell Stands Down</div>
+        <div class="ep-desc">Satan retreats. The gate begins to close. But now he wants to make a deal — and he's coming back in human form to collect…</div>
+      </div>
+      <div class="ep-right">
+        <div class="ep-dur">3:47</div>
+        <div class="lock-pill">🔒 Unlock</div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="more-btn" onclick="openModal()">
+    See all 20 episodes · Unlock the full story →
+  </button>
+</section>
+
+<!-- ═══ MORE DRAMAS ═══ -->
+<section class="section" style="padding-top:24px;">
+  <div class="sec-head">
+    <div class="sec-label">Now Streaming</div>
+    <div class="sec-title">Picked For You</div>
+    <div class="sec-sub">Swipe to explore →</div>
+  </div>
+
+  <div class="drama-carousel">
+
+    <div class="d-card" onclick="openModal()">
+      <div class="d-card-bg d-card-bg-1"></div>
+      <div class="d-silhouette"></div>
+      <div class="d-card-grad"></div>
+      <div class="d-card-top"><span class="d-badge hot">🔥 Trending</span></div>
+      <div class="d-card-body">
+        <div class="d-genre"><span>Sci-Fi</span><span>Explicit</span></div>
+        <h3>«Alien Queen's<br/>Human Pet»</h3>
+        <p>12 eps · 42K watching</p>
+      </div>
+    </div>
+
+    <div class="d-card" onclick="openModal()">
+      <div class="d-card-bg d-card-bg-2"></div>
+      <div class="d-silhouette"></div>
+      <div class="d-card-grad"></div>
+      <div class="d-card-top"><span class="d-badge hot">👑 New</span></div>
+      <div class="d-card-body">
+        <div class="d-genre"><span>Time Travel</span><span>Wild</span></div>
+        <h3>«Stranded in<br/>Ancient Rome»</h3>
+        <p>18 eps · 28K watching</p>
+      </div>
+      <span class="d-lock">🔒 Unlock</span>
+    </div>
+
+    <div class="d-card" onclick="openModal()">
+      <div class="d-card-bg d-card-bg-3"></div>
+      <div class="d-silhouette"></div>
+      <div class="d-card-grad"></div>
+      <div class="d-card-top"><span class="d-badge">Complete</span></div>
+      <div class="d-card-body">
+        <div class="d-genre"><span>Supernatural</span><span>Dark</span></div>
+        <h3>«Vampire Cult<br/>Initiation Night»</h3>
+        <p>24 eps · 61K finished</p>
+      </div>
+      <span class="d-lock">🔒 Unlock</span>
+    </div>
+
+    <div class="d-card" onclick="openModal()">
+      <div class="d-card-bg d-card-bg-4"></div>
+      <div class="d-silhouette"></div>
+      <div class="d-card-grad"></div>
+      <div class="d-card-top"><span class="d-badge hot">💫 Top Rated</span></div>
+      <div class="d-card-body">
+        <div class="d-genre"><span>Fantasy</span><span>Explicit</span></div>
+        <h3>«The Goddess<br/>Needs a Champion»</h3>
+        <p>16 eps · Rated 9.9</p>
+      </div>
+      <span class="d-lock">🔒 Unlock</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ NOT PORN SECTION ═══ -->
+<section style="padding:28px 20px 8px;">
+  <div style="background:linear-gradient(135deg,rgba(255,45,85,0.08),rgba(155,63,223,0.1));border:1px solid rgba(255,45,85,0.18);border-radius:22px;padding:24px 20px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">🧠 vs 😴</div>
+    <div style="font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">What makes us different</div>
+    <h3 style="font-size:20px;font-weight:900;line-height:1.3;margin-bottom:14px;">We're <span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">not ordinary sex videos.</span><br/>We're unhinged AI drama.</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;text-align:left;margin-bottom:18px;">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#ff2d55;font-size:16px;margin-top:2px;">✗</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;">Boring everyday sex scenes with zero story</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#ff2d55;font-size:16px;margin-top:2px;">✗</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;">Actors pretending to have a plot for 30 seconds before giving up</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#ff2d55;font-size:16px;margin-top:2px;">✗</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.5;">The same recycled scenarios you've already seen a thousand times</span>
+      </div>
+    </div>
+    <div style="width:100%;height:1px;background:rgba(255,255,255,0.06);margin-bottom:16px;"></div>
+    <div style="display:flex;flex-direction:column;gap:10px;text-align:left;">
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#f03fa0;font-size:16px;margin-top:2px;">✓</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;"><strong>AI-scripted storylines so insane you'll watch just to find out what happens next</strong></span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#f03fa0;font-size:16px;margin-top:2px;">✓</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;"><strong>Demons. Aliens. Ancient rituals. Time travel. Every series is a completely different universe</strong></span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;">
+        <span style="color:#f03fa0;font-size:16px;margin-top:2px;">✓</span>
+        <span style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;"><strong>Explicit scenes written INTO the plot — because the story demands it</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-pill"><div class="n">5M+</div><div class="l">Members worldwide</div></div>
+    <div class="stat-pill"><div class="n">200+</div><div class="l">Exclusive series</div></div>
+    <div class="stat-pill"><div class="n">Daily</div><div class="l" style="font-size:11px;color:var(--red);">New episodes drop</div></div>
+    <div class="stat-pill"><div class="n">4K</div><div class="l">Ultra HD quality</div></div>
+  </div>
+</section>
+
+<!-- ═══ PAYWALL CTA ═══ -->
+<div class="paywall">
+  <span class="paywall-icon">🔥</span>
+  <h3>The Plot Thickens<span> — Unlock It</span></h3>
+  <p>You've seen 3 episodes. You know this isn't boring porn.<br/>200+ series. 200+ wild, twisted, explicit storylines. All yours.</p>
+  <div class="paywall-plans">
+    <div class="plan" onclick="selectPlan(this)">
+      <div class="plan-price"><sup>$</sup>79.99</div>
+      <div class="plan-period" data-i18n="planSingle">Single Series</div>
+      <div class="plan-desc" data-i18n="planSingleDesc">This show only</div>
+    </div>
+    <div class="plan best" onclick="selectPlan(this)">
+      <div class="plan-best-tag" data-i18n="planPopular">Most Popular</div>
+      <div class="plan-price"><sup>$</sup>99.99</div>
+      <div class="plan-period" data-i18n="planMonthly">Monthly</div>
+      <div class="plan-desc" data-i18n="planMonthlyDesc">Unlimited access</div>
+    </div>
+    <div class="plan" onclick="selectPlan(this)">
+      <div class="plan-price"><sup>$</sup>299</div>
+      <div class="plan-period" data-i18n="planYearly">Yearly</div>
+      <div class="plan-desc" data-i18n="planYearlyDesc">Save $900/yr</div>
+    </div>
+  </div>
+  <button class="unlock-btn" onclick="openModal()">
+    <span data-i18n="unlockBtn">🔓 Unlock Now · Watch Everything</span>
+  </button>
+  <div class="paywall-micro">
+    <span>Secure payment</span>
+    <span>Cancel anytime</span>
+    <span>Private billing</span>
+  </div>
+</div>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features">
+  <div class="feat-title">This Isn't Porn. It's Wilder.</div>
+  <div class="feat-grid">
+    <div class="feat-row">
+      <div class="feat-icon">🧠</div>
+      <div>
+        <h4>Insane AI-Written Plots</h4>
+        <p>We're not making everyday sex videos. Our AI scripts scenarios so outrageous, so twisted, so creative — you'll watch just to see where the story goes.</p>
+      </div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon">😈</div>
+      <div>
+        <h4>Every Genre. Every Fantasy.</h4>
+        <p>Apocalypse? Alien abduction? Ancient ritual? Time travel? Vampire initiation? Each series is a completely different world — with explicit scenes built into the plot.</p>
+      </div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon">⚡</div>
+      <div>
+        <h4>3 Minutes. Maximum Tension.</h4>
+        <p>Every episode ends on a hook. No filler. Just escalating plot twists and scenes that get bolder with each unlock.</p>
+      </div>
+    </div>
+    <div class="feat-row">
+      <div class="feat-icon">🔥</div>
+      <div>
+        <h4>New Series Every Week</h4>
+        <p>AI never runs out of ideas. New plot universes drop weekly — each more unhinged than the last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRIVACY ═══ -->
+<section class="privacy">
+  <div class="priv-list">
+    <div class="priv-row"><span class="icon">🔐</span><div><h4>Total Privacy</h4><p>Your watch history is yours alone. Billing appears as a generic descriptor.</p></div></div>
+    <div class="priv-row"><span class="icon">💳</span><div><h4>Secure Payments</h4><p>Bank-grade encryption. All major cards accepted. No surprises.</p></div></div>
+    <div class="priv-row"><span class="icon">🚫</span><div><h4>Zero Ads</h4><p>Members watch ad-free, uninterrupted. Pure viewing experience.</p></div></div>
+    <div class="priv-row"><span class="icon">♾️</span><div><h4>Offline Downloads</h4><p>Download episodes and watch in airplane mode — no Wi-Fi needed.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <h2>The world won't save itself.<br/><span>Unlock Episode 4.</span></h2>
+  <p>You've never watched adult content like this before.<br/>Wild plots. Explicit scenes. A new story every week. This is what you've been missing.</p>
+  <button class="final-btn" onclick="openModal()">
+    😈 Unlock the Full Series →
+  </button>
+</section>
+
+<footer>© 2026 FlickFire · Adults 18+ Only · All content is fictional</footer>
+
+<!-- ═══ STICKY BAR ═══ -->
+<div class="sticky-bar" id="stickyBar" style="opacity:0;transform:translateY(100%);pointer-events:none;">
+  <div class="sticky-inner">
+    <div class="sticky-copy">
+      <strong>Ep 4: Into the Wild 😈 — Can they save the world?</strong>
+      <span>Unlock to keep watching</span>
+    </div>
+    <button class="sticky-btn" onclick="openModal()">Unlock →</button>
+  </div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">The Plot Gets<span> Wild 😈</span></div>
+    <div class="modal-sub">You've seen 3 episodes. This is NOT your average adult content.<br/>Unlock the full twisted story — and 200+ more series like it.</div>
+    <div class="paywall-plans modal-plans">
+      <div class="plan" onclick="selectPlan(this)">
+        <div class="plan-price"><sup>$</sup>79.99</div>
+        <div class="plan-period" data-i18n="planSingle">Single Series</div>
+        <div class="plan-desc" data-i18n="planSingleDesc">This show only</div>
+      </div>
+      <div class="plan best" onclick="selectPlan(this)">
+        <div class="plan-best-tag" data-i18n="planPopular">Most Popular</div>
+        <div class="plan-price"><sup>$</sup>99.99</div>
+        <div class="plan-period" data-i18n="planMonthly">Monthly</div>
+        <div class="plan-desc" data-i18n="planMonthlyDesc">Unlimited access</div>
+      </div>
+      <div class="plan" onclick="selectPlan(this)">
+        <div class="plan-price"><sup>$</sup>299</div>
+        <div class="plan-period" data-i18n="planYearly">Yearly</div>
+        <div class="plan-desc" data-i18n="planYearlyDesc">Save $900/yr</div>
+      </div>
+    </div>
+    <button class="unlock-btn">
+      🔓 Unlock Now · Keep Watching
+    </button>
+    <div class="paywall-micro" style="margin-top:14px;">
+      <span>Secure payment</span>
+      <span>Cancel anytime</span>
+      <span>Private billing</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Particles
+  const container = document.getElementById('particles');
+  const colors = ['rgba(255,45,85,','rgba(240,63,160,','rgba(155,63,223,'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'p';
+    const size = Math.random() * 4 + 2;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const opacity = Math.random() * 0.4 + 0.1;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${color}${opacity});animation-duration:${Math.random()*12+8}s;animation-delay:-${Math.random()*12}s;`;
+    container.appendChild(p);
+  }
+
+  // Sticky bar
+  const sb = document.getElementById('stickyBar');
+  let sbVisible = false;
+  window.addEventListener('scroll', () => {
+    const show = window.scrollY > window.innerHeight * 0.7;
+    if (show !== sbVisible) {
+      sbVisible = show;
+      sb.style.opacity = show ? '1' : '0';
+      sb.style.transform = show ? 'translateY(0)' : 'translateY(100%)';
+      sb.style.pointerEvents = show ? 'all' : 'none';
+    }
+  }, { passive: true });
+
+  // Plan selection
+  function selectPlan(el) {
+    el.closest('.paywall-plans').querySelectorAll('.plan').forEach(p => {
+      p.classList.remove('best');
+      const t = p.querySelector('.plan-best-tag');
+      if (t && t.textContent === 'Selected') t.remove();
+    });
+    el.classList.add('best');
+    if (!el.querySelector('.plan-best-tag')) {
+      const tag = document.createElement('div');
+      tag.className = 'plan-best-tag';
+      tag.textContent = 'Selected';
+      el.insertBefore(tag, el.firstChild);
+    }
+  }
+
+  // Modal
+  const overlay = document.getElementById('modalOverlay');
+  function openModal() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  function handleOverlayClick(e) { if (e.target === overlay) closeModal(); }
+
+  // Swipe down to close
+  let startY = 0;
+  const sheet = overlay.querySelector('.modal-sheet');
+  sheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+  sheet.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - startY > 80) closeModal(); }, { passive: true });
+
+  // ─── i18n ───
+  const TRANSLATIONS = {
+    en: {
+      eyebrow: '🤖 AI-Generated · Wild Plots · Adult Only',
+      h1: 'Only a Group Sex Ritual<br/><span class="hl">Can Stop Satan.</span>',
+      sub: 'Not your average sex video. FlickFire is AI-scripted adult short drama — insane plots, forbidden scenarios, and scenes you\'ve never imagined. First 3 episodes free.',
+      watchBtn: 'Watch Free Now →',
+      micro1: 'First 3 free', micro2: 'AI-generated', micro3: 'Cancel anytime',
+      dramaTag: '😈 #1 This Week · AI Drama',
+      dramaTitle: '«Only a Group Sex Ritual<br/>Can Stop Satan»',
+      secLabel1: 'This Week\'s #1', secTitle1: 'Must-Watch Tonight', secSub1: 'First 3 episodes free · Unlock more below',
+      secLabel2: 'Now Streaming', secTitle2: 'Picked For You', secSub2: 'Swipe to explore →',
+      planSingle: 'Single Series', planSingleDesc: 'This show only',
+      planPopular: 'Most Popular', planMonthly: 'Monthly', planMonthlyDesc: 'Unlimited access',
+      planYearly: 'Yearly', planYearlyDesc: 'Save $900/yr',
+      unlockBtn: '🔓 Unlock Now · Watch Everything',
+      paywallTitle: 'The Plot Thickens', paywallTitleSpan: ' — Unlock It',
+      paywallSub: 'You\'ve seen 3 episodes. You know this isn\'t boring porn.<br/>200+ series. 200+ wild, twisted, explicit storylines. All yours.',
+      featTitle: 'This Isn\'t Porn. It\'s Wilder.',
+      finalH2: 'The world won\'t save itself.', finalH2Span: 'Unlock Episode 4.',
+      finalSub: 'You\'ve never watched adult content like this before.\nWild plots. Explicit scenes. A new story every week.',
+      finalBtn: '😈 Unlock the Full Series →',
+      stickyTitle: 'Ep 4: Into the Wild 😈 — Can they save the world?',
+      stickySub: 'Unlock to keep watching',
+      stickyBtn: 'Unlock →',
+      modalTitle: 'The Plot Gets', modalTitleSpan: ' Wild 😈',
+      modalSub: 'You\'ve seen 3 episodes. This is NOT your average adult content.\nUnlock the full twisted story — and 200+ more series like it.',
+      footer: '© 2026 FlickFire · Adults 18+ Only · All content is fictional',
+    },
+    zh: {
+      eyebrow: '🤖 AI生成 · 脑洞剧情 · 仅限18+',
+      h1: '只有群P的性仪式<br/><span class="hl">才能阻止撒旦。</span>',
+      sub: '这不是普通做爱视频。FlickFire是AI剧本驱动的成人短剧——脑洞大开的剧情，禁忌场景，你从未想象过的故事。前3集完全免费。',
+      watchBtn: '免费观看 →',
+      micro1: '前3集免费', micro2: 'AI生成内容', micro3: '随时取消',
+      dramaTag: '😈 本周第一 · AI短剧',
+      dramaTitle: '《只有群P的性仪式<br/>才能阻止撒旦》',
+      secLabel1: '本周第一', secTitle1: '今晚必看', secSub1: '前3集免费 · 解锁更多',
+      secLabel2: '正在热播', secTitle2: '为你推荐', secSub2: '滑动探索 →',
+      planSingle: '单部剧集', planSingleDesc: '仅限本剧',
+      planPopular: '最受欢迎', planMonthly: '月度会员', planMonthlyDesc: '无限观看',
+      planYearly: '年度会员', planYearlyDesc: '省$900/年',
+      unlockBtn: '🔓 立即解锁 · 全部观看',
+      paywallTitle: '剧情越来越精彩', paywallTitleSpan: ' — 立即解锁',
+      paywallSub: '你已经看了3集。你知道这不是普通的成人内容。<br/>200+系列，200+脑洞剧情，全部等你解锁。',
+      featTitle: '这不是A片。比A片更刺激。',
+      finalH2: '世界等不了你。', finalH2Span: '解锁第4集。',
+      finalSub: '你从未看过这样的成人内容。\n脑洞剧情，露骨场景，每周全新故事。',
+      finalBtn: '😈 解锁完整系列 →',
+      stickyTitle: '第4集：走进荒野 😈 — 他们能拯救世界吗？',
+      stickySub: '解锁继续观看',
+      stickyBtn: '解锁 →',
+      modalTitle: '剧情越来越', modalTitleSpan: '疯狂了 😈',
+      modalSub: '你已经看了3集。这绝对不是普通成人内容。\n解锁完整扭曲剧情——以及200+更多同类系列。',
+      footer: '© 2026 FlickFire · 仅限18岁以上成年人 · 所有内容均为虚构',
+    },
+    es: {
+      eyebrow: '🤖 Generado por IA · Tramas Locas · Solo +18',
+      h1: 'Solo un Ritual Sexual Grupal<br/><span class="hl">Puede Detener a Satán.</span>',
+      sub: 'No son videos de sexo ordinarios. FlickFire es drama adulto con guión de IA — tramas alucinantes, escenarios prohibidos y escenas que nunca imaginaste. Los primeros 3 episodios son gratis.',
+      watchBtn: 'Ver Gratis Ahora →',
+      micro1: 'Primeros 3 gratis', micro2: 'Generado por IA', micro3: 'Cancela cuando quieras',
+      dramaTag: '😈 #1 Esta Semana · Drama IA',
+      dramaTitle: '«Solo un Ritual Sexual Grupal<br/>Puede Detener a Satán»',
+      secLabel1: 'El #1 De La Semana', secTitle1: 'Imprescindible Esta Noche', secSub1: 'Primeros 3 episodios gratis · Desbloquea más',
+      secLabel2: 'En Emisión', secTitle2: 'Seleccionado Para Ti', secSub2: 'Desliza para explorar →',
+      planSingle: 'Serie Individual', planSingleDesc: 'Solo esta serie',
+      planPopular: 'Más Popular', planMonthly: 'Mensual', planMonthlyDesc: 'Acceso ilimitado',
+      planYearly: 'Anual', planYearlyDesc: 'Ahorra $900/año',
+      unlockBtn: '🔓 Desbloquear · Ver Todo',
+      paywallTitle: 'La Trama Se Complica', paywallTitleSpan: ' — Desbloquéala',
+      paywallSub: 'Ya viste 3 episodios. Sabes que esto no es porno aburrido.<br/>200+ series. 200+ tramas retorcidas y explícitas. Todo tuyo.',
+      featTitle: 'Esto No Es Porno. Es Más Salvaje.',
+      finalH2: 'El mundo no se salvará solo.', finalH2Span: 'Desbloquea el Episodio 4.',
+      finalSub: 'Nunca habías visto contenido adulto como este.\nTramas locas. Escenas explícitas. Una historia nueva cada semana.',
+      finalBtn: '😈 Desbloquear la Serie Completa →',
+      stickyTitle: 'Ep 4: Al Monte 😈 — ¿Pueden salvar el mundo?',
+      stickySub: 'Desbloquea para seguir viendo',
+      stickyBtn: 'Desbloquear →',
+      modalTitle: 'La Trama Se Vuelve', modalTitleSpan: ' Loca 😈',
+      modalSub: 'Ya viste 3 episodios. Esto NO es contenido adulto común.\nDesbloquea la historia completa y 200+ series más.',
+      footer: '© 2026 FlickFire · Solo Adultos +18 · Todo el contenido es ficticio',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = TRANSLATIONS[lang];
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang || (lang==='zh' && b.textContent.trim()==='中文'));
+    });
+    // Simple text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    // HTML nodes (contain spans/br)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    // Special elements with known structure
+    const pw = document.querySelector('.paywall h3');
+    if (pw) pw.innerHTML = t.paywallTitle + '<span>' + t.paywallTitleSpan + '</span>';
+    const fh = document.querySelector('.final-cta h2');
+    if (fh) fh.innerHTML = t.finalH2 + '<br/><span>' + t.finalH2Span + '</span>';
+    const fb = document.querySelector('.final-btn');
+    if (fb) fb.innerHTML = t.finalBtn;
+    const ft = document.querySelector('footer');
+    if (ft) ft.textContent = t.footer;
+    const mt = document.querySelector('.modal-title');
+    if (mt) mt.innerHTML = t.modalTitle + '<span>' + t.modalTitleSpan + '</span>';
+    const ms = document.querySelector('.modal-sub');
+    if (ms) ms.innerHTML = t.modalSub.replace('\n','<br/>');
+    const sc = document.querySelector('.sticky-copy strong');
+    if (sc) sc.textContent = t.stickyTitle;
+    const ss = document.querySelector('.sticky-copy span');
+    if (ss) ss.textContent = t.stickySub;
+    const sbtn = document.querySelector('.sticky-btn');
+    if (sbtn) sbtn.textContent = t.stickyBtn;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'es' ? 'es' : 'en';
+  }
+</script>
+</body>
+</html>
