@@ -414,6 +414,101 @@
       display:flex;align-items:center;justify-content:center;
       font-size:16px;color:rgba(255,255,255,0.4);cursor:pointer;
     }
+
+    /* ─── CAST STRIP ─── */
+    .cast-section{padding:32px 0 12px;}
+    .cast-strip{
+      display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;
+      padding:8px 20px 16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    }
+    .cast-strip::-webkit-scrollbar{display:none;}
+    .cast-card{
+      flex:0 0 80px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;
+    }
+    .cast-avatar-wrap{
+      position:relative;width:72px;height:72px;flex-shrink:0;
+    }
+    .cast-avatar{
+      width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center top;
+      border:2px solid rgba(255,45,85,0.35);
+      transition:border-color .2s,transform .2s;
+    }
+    .cast-card:hover .cast-avatar{border-color:var(--red);transform:scale(1.05);}
+    .cast-ring{
+      position:absolute;inset:-3px;border-radius:50%;
+      border:2px solid transparent;
+      background:linear-gradient(135deg,#ff2d55,#f03fa0,#9b3fdf) border-box;
+      -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:destination-out;mask-composite:exclude;
+      opacity:0;transition:opacity .2s;
+    }
+    .cast-card:hover .cast-ring{opacity:1;}
+    .cast-card.voted .cast-ring{opacity:1;}
+    .cast-name{font-size:11px;font-weight:700;color:#fff;text-align:center;white-space:nowrap;}
+    .cast-type{font-size:10px;color:#4a4068;text-align:center;white-space:nowrap;}
+    .cast-badge{
+      position:absolute;bottom:-2px;right:-2px;
+      background:var(--grad);border-radius:50%;width:20px;height:20px;
+      display:flex;align-items:center;justify-content:center;font-size:10px;
+      border:2px solid var(--dark);
+    }
+
+    /* ─── VOTING SECTION ─── */
+    .vote-section{padding:8px 20px 32px;}
+    .vote-header{margin-bottom:20px;}
+    .vote-card{
+      background:var(--card);border:1px solid rgba(255,45,85,0.15);
+      border-radius:20px;padding:20px 18px;margin-bottom:14px;
+    }
+    .vote-card-title{
+      font-size:14px;font-weight:800;margin-bottom:16px;
+      display:flex;align-items:center;gap:8px;
+    }
+    .vote-countdown{
+      display:inline-flex;align-items:center;gap:5px;
+      background:rgba(255,45,85,0.1);border:1px solid rgba(255,45,85,0.25);
+      border-radius:999px;padding:3px 10px;font-size:10px;font-weight:700;color:#ff7096;
+      margin-left:auto;
+    }
+    .vote-options{display:flex;flex-direction:column;gap:10px;}
+    .vote-option{
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
+      border-radius:12px;padding:12px 14px;cursor:pointer;transition:border-color .2s;
+      position:relative;overflow:hidden;
+    }
+    .vote-option:hover{border-color:rgba(255,45,85,0.3);}
+    .vote-option.selected{border-color:rgba(255,45,85,0.5);background:rgba(255,45,85,0.06);}
+    .vote-option-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:1;}
+    .vote-label{font-size:13px;font-weight:700;}
+    .vote-pct{font-size:12px;font-weight:800;color:var(--red);}
+    .vote-bar-wrap{height:4px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;}
+    .vote-fill{height:100%;background:var(--grad);border-radius:999px;transition:width .6s ease;}
+    .vote-cast-btn{
+      display:flex;align-items:center;justify-content:center;
+      margin-top:14px;background:transparent;
+      border:1px solid rgba(255,45,85,0.3);border-radius:12px;padding:12px;
+      color:rgba(255,255,255,0.5);font-size:13px;font-weight:700;cursor:pointer;width:100%;
+      transition:all .2s;
+    }
+    .vote-cast-btn:hover{background:rgba(255,45,85,0.08);border-color:var(--red);color:#fff;}
+    .vote-cast-btn.voted-done{background:rgba(255,45,85,0.1);border-color:var(--red);color:#ff7096;}
+
+    /* actress vote grid */
+    .actress-vote-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+    }
+    .av-cell{
+      display:flex;flex-direction:column;align-items:center;gap:6px;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+      border-radius:14px;padding:12px 8px;cursor:pointer;transition:all .2s;
+    }
+    .av-cell:hover{border-color:rgba(255,45,85,0.3);}
+    .av-cell.voted{border-color:rgba(255,45,85,0.5);background:rgba(255,45,85,0.07);}
+    .av-img{width:50px;height:50px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(255,255,255,0.08);}
+    .av-name{font-size:11px;font-weight:700;text-align:center;}
+    .av-pct{font-size:10px;color:var(--red);font-weight:800;}
+    .av-bar{width:100%;height:3px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;margin-top:2px;}
+    .av-fill{height:100%;background:var(--grad);border-radius:999px;}
   </style>
 </head>
 <body>
@@ -448,7 +543,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow" data-i18n="eyebrow">🤖 AI-Generated · Wild Plots · Adult Only</div>
     <h1 data-i18n-html="h1">Only a Group Sex Ritual<br/><span class="hl">Can Stop Satan from Destroying the World.</span></h1>
-    <p class="hero-sub" data-i18n="sub">Not your average sex video. FlickFire is an AI erotic series platform — insane plots, forbidden scenarios, and scenes you've never imagined. First 3 episodes free.</p>
+    <p class="hero-sub" data-i18n="sub">Not your average sex video. FlickFire is an AI erotic series platform — insane plots, forbidden scenarios, and scenes you've never imagined. First 2 episodes free.</p>
     <button class="hero-btn" onclick="openModal()">
       <div class="pulse"></div>
       <span data-i18n="watchBtn">Watch Free Now →</span>
@@ -482,7 +577,7 @@
   <div class="sec-head">
     <div class="sec-label" data-i18n="secLabel1">This Week's #1</div>
     <div class="sec-title" data-i18n="secTitle1">Must-Watch Tonight</div>
-    <div class="sec-sub" data-i18n="secSub1">First 3 episodes free · Unlock more below</div>
+    <div class="sec-sub" data-i18n="secSub1">First 2 episodes free · Unlock more below</div>
   </div>
 
   <div class="drama-hero">
@@ -494,11 +589,11 @@
       <h2 data-i18n-html="dramaTitle">«Only a Group Sex Ritual<br/>Can Stop Satan»</h2>
       <div class="drama-meta">
         <div class="drama-rating">★★★★★ <span style="color:rgba(255,255,255,0.3);font-weight:400;margin-left:2px;">9.8</span></div>
-        <span class="drama-ep" data-i18n="dramaEp">20 eps · 3 min each</span>
+        <span class="drama-ep" data-i18n="dramaEp">27 eps · 1–2 min each</span>
       </div>
       <a href="#episodes" class="play-btn" data-i18n="playBtn">▶ Watch Now</a>
     </div>
-    <span class="free-tag" data-i18n="freeTag">First 3 FREE</span>
+    <span class="free-tag" data-i18n="freeTag">First 2 FREE</span>
   </div>
 
   <!-- Episode list -->
@@ -530,16 +625,16 @@
       </div>
     </div>
 
-    <div class="ep-row">
-      <div class="ep-thumb">🎬</div>
+    <div class="ep-row locked" onclick="openModal()">
+      <div class="ep-thumb">🔒</div>
       <div class="ep-info">
         <div class="ep-num">EP 03</div>
         <div class="ep-title">The Chosen Five</div>
-        <div class="ep-desc">Five strangers are selected by the prophecy. They meet under a blood moon. No one can believe what they're about to do to save humanity…</div>
+        <div class="ep-desc">Five strangers meet under a blood moon. What they're about to do to save humanity will break every rule you know…</div>
       </div>
       <div class="ep-right">
-        <div class="ep-dur">3:38</div>
-        <div class="free-pill">Free</div>
+        <div class="ep-dur">1:48</div>
+        <div class="lock-pill">🔒 Unlock</div>
       </div>
     </div>
 
@@ -584,7 +679,7 @@
 
   </div>
 
-  <button class="more-btn" onclick="openModal()" data-i18n="moreBtn">See all 20 episodes · Unlock the full story →</button>
+  <button class="more-btn" onclick="openModal()" data-i18n="moreBtn">See all 27 episodes · Unlock the full story →</button>
 </section>
 
 <!-- ═══ MORE DRAMAS ═══ -->
@@ -647,6 +742,160 @@
   </div>
 </section>
 
+<!-- ═══ CAST / AI ACTRESS ROSTER ═══ -->
+<section class="cast-section">
+  <div class="sec-head">
+    <div class="sec-label">Our Stars</div>
+    <div class="sec-title">AI Actress Roster</div>
+    <div class="sec-sub">Swipe to explore · Vote below to pick the next lead →</div>
+  </div>
+  <div class="cast-strip" id="castStrip">
+    <div class="cast-card" onclick="voteActress(this,0)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/44.jpg"/><div class="cast-ring"></div><div class="cast-badge">🔥</div></div>
+      <div class="cast-name">Luna Voss</div><div class="cast-type">Sci-Fi · Dark</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,1)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/68.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Aria Knight</div><div class="cast-type">Fantasy · Wild</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,2)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/65.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Mia Soleil</div><div class="cast-type">Romance · Explicit</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,3)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/90.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Zara Vex</div><div class="cast-type">Thriller · Dark</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,4)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/76.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Nyx Monroe</div><div class="cast-type">Supernatural</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,5)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/54.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Cleo Darling</div><div class="cast-type">Time Travel</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,6)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/48.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Nova Reign</div><div class="cast-type">Sci-Fi · Explicit</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,7)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/32.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Selene Cross</div><div class="cast-type">Vampire · Dark</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,8)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/26.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Roxie Vale</div><div class="cast-type">Fantasy · Wild</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,9)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/57.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Ember Stone</div><div class="cast-type">Apocalypse</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,10)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/62.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Lyra Fox</div><div class="cast-type">Ritual · Explicit</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,11)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/37.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Scarlet Muse</div><div class="cast-type">Dark Romance</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,12)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/29.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Vael Quinn</div><div class="cast-type">Sci-Fi · Wild</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,13)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/83.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Iris Black</div><div class="cast-type">Supernatural</div>
+    </div>
+    <div class="cast-card" onclick="voteActress(this,14)">
+      <div class="cast-avatar-wrap"><img class="cast-avatar" src="https://randomuser.me/api/portraits/women/19.jpg"/><div class="cast-ring"></div></div>
+      <div class="cast-name">Demi Fire</div><div class="cast-type">Fantasy · Explicit</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMMUNITY VOTE ═══ -->
+<section class="vote-section">
+  <div class="vote-header">
+    <div class="sec-label">Community Vote</div>
+    <div class="sec-title">You Decide What's Next</div>
+    <div class="sec-sub">Vote closes in 48 hours · Results shape our next production</div>
+  </div>
+
+  <!-- Vote 1: Plot -->
+  <div class="vote-card">
+    <div class="vote-card-title">
+      📖 Next Series: Choose the Plot
+      <div class="vote-countdown">⏱ 47h left</div>
+    </div>
+    <div class="vote-options" id="plotVotes">
+      <div class="vote-option" onclick="castVote(this,'plot',0)">
+        <div class="vote-option-top"><span class="vote-label">«An A.I. Falls in Love with Its Creator»</span><span class="vote-pct">34%</span></div>
+        <div class="vote-bar-wrap"><div class="vote-fill" style="width:34%"></div></div>
+      </div>
+      <div class="vote-option" onclick="castVote(this,'plot',1)">
+        <div class="vote-option-top"><span class="vote-label">«Stranded on a Planet Where Desire is Currency»</span><span class="vote-pct">28%</span></div>
+        <div class="vote-bar-wrap"><div class="vote-fill" style="width:28%"></div></div>
+      </div>
+      <div class="vote-option" onclick="castVote(this,'plot',2)">
+        <div class="vote-option-top"><span class="vote-label">«The Last Human Woman in a World of Gods»</span><span class="vote-pct">23%</span></div>
+        <div class="vote-bar-wrap"><div class="vote-fill" style="width:23%"></div></div>
+      </div>
+      <div class="vote-option" onclick="castVote(this,'plot',3)">
+        <div class="vote-option-top"><span class="vote-label">«Time Traveler Trapped in Ancient Rome's Pleasure Halls»</span><span class="vote-pct">15%</span></div>
+        <div class="vote-bar-wrap"><div class="vote-fill" style="width:15%"></div></div>
+      </div>
+    </div>
+    <button class="vote-cast-btn" id="plotVoteBtn" onclick="submitVote('plot')">Cast Your Vote →</button>
+  </div>
+
+  <!-- Vote 2: Lead Actress -->
+  <div class="vote-card">
+    <div class="vote-card-title">
+      👑 Next Lead Actress
+      <div class="vote-countdown">⏱ 47h left</div>
+    </div>
+    <div class="actress-vote-grid" id="actressVoteGrid">
+      <div class="av-cell" onclick="castActressVote(this,0)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/44.jpg"/>
+        <div class="av-name">Luna Voss</div>
+        <div class="av-pct">31%</div>
+        <div class="av-bar"><div class="av-fill" style="width:31%"></div></div>
+      </div>
+      <div class="av-cell" onclick="castActressVote(this,1)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/68.jpg"/>
+        <div class="av-name">Aria Knight</div>
+        <div class="av-pct">24%</div>
+        <div class="av-bar"><div class="av-fill" style="width:24%"></div></div>
+      </div>
+      <div class="av-cell" onclick="castActressVote(this,2)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/65.jpg"/>
+        <div class="av-name">Mia Soleil</div>
+        <div class="av-pct">19%</div>
+        <div class="av-bar"><div class="av-fill" style="width:19%"></div></div>
+      </div>
+      <div class="av-cell" onclick="castActressVote(this,3)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/90.jpg"/>
+        <div class="av-name">Zara Vex</div>
+        <div class="av-pct">14%</div>
+        <div class="av-bar"><div class="av-fill" style="width:14%"></div></div>
+      </div>
+      <div class="av-cell" onclick="castActressVote(this,4)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/76.jpg"/>
+        <div class="av-name">Nyx Monroe</div>
+        <div class="av-pct">8%</div>
+        <div class="av-bar"><div class="av-fill" style="width:8%"></div></div>
+      </div>
+      <div class="av-cell" onclick="castActressVote(this,5)">
+        <img class="av-img" src="https://randomuser.me/api/portraits/women/54.jpg"/>
+        <div class="av-name">Cleo Darling</div>
+        <div class="av-pct">4%</div>
+        <div class="av-bar"><div class="av-fill" style="width:4%"></div></div>
+      </div>
+    </div>
+    <button class="vote-cast-btn" id="actressVoteBtn" onclick="submitVote('actress')">Cast Your Vote →</button>
+  </div>
+</section>
+
 <!-- ═══ NOT PORN SECTION ═══ -->
 <section style="padding:28px 20px 8px;">
   <div data-i18n-html="notPornBox" style="background:linear-gradient(135deg,rgba(255,45,85,0.08),rgba(155,63,223,0.1));border:1px solid rgba(255,45,85,0.18);border-radius:22px;padding:24px 20px;text-align:center;">
@@ -684,20 +933,20 @@
   <p data-i18n-html="paywallSub">You've seen 3 episodes. You know this isn't boring porn.<br/>200+ series. 200+ wild, twisted, explicit storylines. All yours.</p>
   <div class="paywall-plans">
     <div class="plan" onclick="selectPlan(this)">
-      <div class="plan-price"><sup>$</sup>79.99</div>
-      <div class="plan-period" data-i18n="planSingle">Single Series</div>
-      <div class="plan-desc" data-i18n="planSingleDesc">This show only</div>
+      <div class="plan-price"><sup>$</sup>9</div>
+      <div class="plan-period" data-i18n="planSingle">Per Episode</div>
+      <div class="plan-desc" data-i18n="planSingleDesc">Any single ep · Forever</div>
     </div>
     <div class="plan best" onclick="selectPlan(this)">
-      <div class="plan-best-tag" data-i18n="planPopular">Most Popular</div>
-      <div class="plan-price"><sup>$</sup>99.99</div>
-      <div class="plan-period" data-i18n="planMonthly">Monthly</div>
-      <div class="plan-desc" data-i18n="planMonthlyDesc">Unlimited access</div>
+      <div class="plan-best-tag" data-i18n="planPopular">Best Value</div>
+      <div class="plan-price"><sup>$</sup>199</div>
+      <div class="plan-period" data-i18n="planMonthly">Full Series</div>
+      <div class="plan-desc" data-i18n="planMonthlyDesc">All 27 eps · Forever</div>
     </div>
     <div class="plan" onclick="selectPlan(this)">
-      <div class="plan-price"><sup>$</sup>299</div>
-      <div class="plan-period" data-i18n="planYearly">Yearly</div>
-      <div class="plan-desc" data-i18n="planYearlyDesc">Save $900/yr</div>
+      <div class="plan-price"><sup>$</sup>359</div>
+      <div class="plan-period" data-i18n="planYearly">2-Series Bundle</div>
+      <div class="plan-desc" data-i18n="planYearlyDesc">Pick any 2 series</div>
     </div>
   </div>
   <button class="unlock-btn" onclick="openModal()">
@@ -786,20 +1035,20 @@
     <div class="modal-sub">You've seen 3 episodes. This is NOT your average adult content.<br/>Unlock the full twisted story — and 200+ more series like it.</div>
     <div class="paywall-plans modal-plans">
       <div class="plan" onclick="selectPlan(this)">
-        <div class="plan-price"><sup>$</sup>79.99</div>
-        <div class="plan-period" data-i18n="planSingle">Single Series</div>
-        <div class="plan-desc" data-i18n="planSingleDesc">This show only</div>
+        <div class="plan-price"><sup>$</sup>9</div>
+        <div class="plan-period" data-i18n="planSingle">Per Episode</div>
+        <div class="plan-desc" data-i18n="planSingleDesc">Any single ep · Forever</div>
       </div>
       <div class="plan best" onclick="selectPlan(this)">
-        <div class="plan-best-tag" data-i18n="planPopular">Most Popular</div>
-        <div class="plan-price"><sup>$</sup>99.99</div>
-        <div class="plan-period" data-i18n="planMonthly">Monthly</div>
-        <div class="plan-desc" data-i18n="planMonthlyDesc">Unlimited access</div>
+        <div class="plan-best-tag" data-i18n="planPopular">Best Value</div>
+        <div class="plan-price"><sup>$</sup>199</div>
+        <div class="plan-period" data-i18n="planMonthly">Full Series</div>
+        <div class="plan-desc" data-i18n="planMonthlyDesc">All 27 eps · Forever</div>
       </div>
       <div class="plan" onclick="selectPlan(this)">
-        <div class="plan-price"><sup>$</sup>299</div>
-        <div class="plan-period" data-i18n="planYearly">Yearly</div>
-        <div class="plan-desc" data-i18n="planYearlyDesc">Save $900/yr</div>
+        <div class="plan-price"><sup>$</sup>359</div>
+        <div class="plan-period" data-i18n="planYearly">2-Series Bundle</div>
+        <div class="plan-desc" data-i18n="planYearlyDesc">Pick any 2 series</div>
       </div>
     </div>
     <button class="unlock-btn" data-i18n="modalUnlockBtn">🔓 Unlock Now · Keep Watching</button>
@@ -860,6 +1109,49 @@
   function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
   function handleOverlayClick(e) { if (e.target === overlay) closeModal(); }
 
+  // ─── VOTING ───
+  let plotVoted = false, actressVoted = false;
+
+  function castVote(el, group, idx) {
+    if (plotVoted) return;
+    document.querySelectorAll('#plotVotes .vote-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function submitVote(type) {
+    if (type === 'plot' && !plotVoted) {
+      const sel = document.querySelector('#plotVotes .vote-option.selected');
+      if (!sel) return;
+      plotVoted = true;
+      const btn = document.getElementById('plotVoteBtn');
+      btn.textContent = '✓ Vote Recorded — Results update in real time';
+      btn.classList.add('voted-done');
+    }
+    if (type === 'actress' && !actressVoted) {
+      const sel = document.querySelector('#actressVoteGrid .av-cell.voted');
+      if (!sel) return;
+      actressVoted = true;
+      const btn = document.getElementById('actressVoteBtn');
+      btn.textContent = '✓ Vote Recorded — Results update in real time';
+      btn.classList.add('voted-done');
+    }
+  }
+
+  function castActressVote(el, idx) {
+    if (actressVoted) return;
+    document.querySelectorAll('#actressVoteGrid .av-cell').forEach(c => c.classList.remove('voted'));
+    el.classList.add('voted');
+  }
+
+  function voteActress(el, idx) {
+    // clicking cast strip avatar → scroll to actress vote section and highlight
+    document.querySelectorAll('#actressVoteGrid .av-cell').forEach(c => c.classList.remove('voted'));
+    const grid = document.getElementById('actressVoteGrid');
+    const cells = grid.querySelectorAll('.av-cell');
+    if (cells[idx]) { cells[idx].classList.add('voted'); cells[idx].scrollIntoView({behavior:'smooth',block:'center'}); }
+    el.classList.add('voted');
+  }
+
   // Swipe down to close
   let startY = 0;
   const sheet = overlay.querySelector('.modal-sheet');
@@ -873,21 +1165,21 @@
     en: `
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 01</div><div class="ep-title">Hell's Gate Opens</div><div class="ep-desc">A crack appears in the sky. Demons pour through. Only one prophecy stands between Earth and total annihilation…</div></div><div class="ep-right"><div class="ep-dur">3:24</div><div class="free-pill">Free</div></div></div>
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 02</div><div class="ep-title">The Ancient Scroll</div><div class="ep-desc">The prophecy is translated. Satan can only be moved by one thing — and it has to happen before sunrise in the open wilderness…</div></div><div class="ep-right"><div class="ep-dur">3:11</div><div class="free-pill">Free</div></div></div>
-      <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 03</div><div class="ep-title">The Chosen Five</div><div class="ep-desc">Five strangers are selected by the prophecy. They meet under a blood moon. No one can believe what they're about to do to save humanity…</div></div><div class="ep-right"><div class="ep-dur">3:38</div><div class="free-pill">Free</div></div></div>
+      <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 03</div><div class="ep-title">The Chosen Five</div><div class="ep-desc">Five strangers meet under a blood moon. What they're about to do to save humanity will break every rule you know…</div></div><div class="ep-right"><div class="ep-dur">1:48</div><div class="lock-pill">🔒 Unlock</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 04</div><div class="ep-title">Into the Wild</div><div class="ep-desc">The ritual begins at the forest altar. Satan watches from the darkness. For the first time in 3,000 years… he hesitates.</div></div><div class="ep-right"><div class="ep-dur">3:52</div><div class="lock-pill">🔒 Unlock</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 05</div><div class="ep-title">Satan Feels Something</div><div class="ep-desc">The Prince of Darkness hasn't felt emotion in millennia. But what he witnesses in that forest… breaks something open inside him.</div></div><div class="ep-right"><div class="ep-dur">4:05</div><div class="lock-pill">🔒 Unlock</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 06</div><div class="ep-title">Hell Stands Down</div><div class="ep-desc">Satan retreats. The gate begins to close. But now he wants to make a deal — and he's coming back in human form to collect…</div></div><div class="ep-right"><div class="ep-dur">3:47</div><div class="lock-pill">🔒 Unlock</div></div></div>`,
     zh: `
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">第01集</div><div class="ep-title">地狱之门开启</div><div class="ep-desc">天空出现裂缝，恶魔涌入人间。唯有一个古老预言能阻止地球的毁灭……</div></div><div class="ep-right"><div class="ep-dur">3:24</div><div class="free-pill">免费</div></div></div>
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">第02集</div><div class="ep-title">古老的预言卷轴</div><div class="ep-desc">预言被解读。只有一件事能感动撒旦——而且必须在日出前于荒野中完成……</div></div><div class="ep-right"><div class="ep-dur">3:11</div><div class="free-pill">免费</div></div></div>
-      <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">第03集</div><div class="ep-title">被选中的五人</div><div class="ep-desc">五个陌生人被预言选中，在血月下相遇。没有人敢相信他们即将为拯救人类而做的事……</div></div><div class="ep-right"><div class="ep-dur">3:38</div><div class="free-pill">免费</div></div></div>
+      <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">第03集</div><div class="ep-title">被选中的五人</div><div class="ep-desc">五人血月下相遇，为拯救人类将做出一件超越所有禁忌的事……</div></div><div class="ep-right"><div class="ep-dur">1:48</div><div class="lock-pill">🔒 解锁</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">第04集</div><div class="ep-title">走进荒野</div><div class="ep-desc">仪式在森林祭坛正式开始。撒旦在黑暗中注视着一切。三千年来，他第一次……犹豫了。</div></div><div class="ep-right"><div class="ep-dur">3:52</div><div class="lock-pill">🔒 解锁</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">第05集</div><div class="ep-title">撒旦有了感觉</div><div class="ep-desc">黑暗王子已千年未曾动过情感。但他在那片森林中目睹的一切……让他内心某处彻底崩塌了。</div></div><div class="ep-right"><div class="ep-dur">4:05</div><div class="lock-pill">🔒 解锁</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">第06集</div><div class="ep-title">地狱退兵</div><div class="ep-desc">撒旦撤退了，裂缝开始关闭。但他想做一笔交易——他将以人类的形态归来，亲自索取……</div></div><div class="ep-right"><div class="ep-dur">3:47</div><div class="lock-pill">🔒 解锁</div></div></div>`,
     es: `
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 01</div><div class="ep-title">Las Puertas del Infierno</div><div class="ep-desc">Una grieta aparece en el cielo. Los demonios invaden la Tierra. Solo una antigua profecía puede evitar la aniquilación total…</div></div><div class="ep-right"><div class="ep-dur">3:24</div><div class="free-pill">Gratis</div></div></div>
       <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 02</div><div class="ep-title">El Pergamino Antiguo</div><div class="ep-desc">La profecía es descifrada. Solo una cosa puede conmover a Satán — y debe ocurrir antes del amanecer en plena naturaleza…</div></div><div class="ep-right"><div class="ep-dur">3:11</div><div class="free-pill">Gratis</div></div></div>
-      <div class="ep-row"><div class="ep-thumb">🎬</div><div class="ep-info"><div class="ep-num">EP 03</div><div class="ep-title">Los Cinco Elegidos</div><div class="ep-desc">Cinco extraños son seleccionados por la profecía. Se reúnen bajo una luna de sangre. Nadie puede creer lo que están a punto de hacer para salvar a la humanidad…</div></div><div class="ep-right"><div class="ep-dur">3:38</div><div class="free-pill">Gratis</div></div></div>
+      <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 03</div><div class="ep-title">Los Cinco Elegidos</div><div class="ep-desc">Cinco extraños se reúnen bajo una luna de sangre. Lo que están a punto de hacer romperá todas las reglas…</div></div><div class="ep-right"><div class="ep-dur">1:48</div><div class="lock-pill">🔒 Desbloquear</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 04</div><div class="ep-title">Hacia Lo Salvaje</div><div class="ep-desc">El ritual comienza en el altar del bosque. Satán observa desde la oscuridad. Por primera vez en 3.000 años… duda.</div></div><div class="ep-right"><div class="ep-dur">3:52</div><div class="lock-pill">🔒 Desbloquear</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 05</div><div class="ep-title">Satán Siente Algo</div><div class="ep-desc">El Príncipe de la Oscuridad no había sentido emoción en milenios. Pero lo que presencia en ese bosque… abre algo dentro de él.</div></div><div class="ep-right"><div class="ep-dur">4:05</div><div class="lock-pill">🔒 Desbloquear</div></div></div>
       <div class="ep-row locked" onclick="openModal()"><div class="ep-thumb">🔒</div><div class="ep-info"><div class="ep-num">EP 06</div><div class="ep-title">El Infierno Se Rinde</div><div class="ep-desc">Satán retrocede. La grieta empieza a cerrarse. Pero ahora quiere hacer un trato — y volverá en forma humana para cobrarlo…</div></div><div class="ep-right"><div class="ep-dur">3:47</div><div class="lock-pill">🔒 Desbloquear</div></div></div>`
@@ -941,24 +1233,24 @@
       h1: 'Only a Group Sex Ritual<br/><span class="hl">Can Stop Satan from Destroying the World.</span>',
       sub: "Not your average sex video. FlickFire is an AI erotic series platform — insane plots, forbidden scenarios, and scenes you've never imagined. First 3 episodes free.",
       watchBtn: 'Watch Free Now →',
-      micro1: 'First 3 free', micro2: 'AI-generated', micro3: 'Cancel anytime',
+      micro1: 'First 2 free', micro2: 'AI-generated', micro3: 'Unlock forever',
       dramaTag: '😈 #1 This Week · AI Drama',
       dramaTitle: '«Only a Group Sex Ritual<br/>Can Stop Satan»',
-      secLabel1: "This Week's #1", secTitle1: 'Must-Watch Tonight', secSub1: 'First 3 episodes free · Unlock more below',
-      dramaEp: '20 eps · 3 min each', playBtn: '▶ Watch Now', freeTag: 'First 3 FREE',
+      secLabel1: "This Week's #1", secTitle1: 'Must-Watch Tonight', secSub1: 'First 2 episodes free · Unlock more below',
+      dramaEp: '27 eps · 1–2 min each', playBtn: '▶ Watch Now', freeTag: 'First 2 FREE',
       epList: EP_LIST.en,
-      moreBtn: 'See all 20 episodes · Unlock the full story →',
+      moreBtn: 'See all 27 episodes · Unlock the full story →',
       secLabel2: 'Now Streaming', secTitle2: 'Picked For You', secSub2: 'Swipe to explore →',
       dramaCards: DRAMA_CARDS.en,
       notPornBox: NOT_PORN.en,
       stat1l: 'Members worldwide', stat2l: 'Exclusive series',
       stat3n: 'Daily', stat3l: 'New episodes drop', stat4l: 'Ultra HD quality',
-      planSingle: 'Single Series', planSingleDesc: 'This show only',
-      planPopular: 'Most Popular', planMonthly: 'Monthly', planMonthlyDesc: 'Unlimited access',
-      planYearly: 'Yearly', planYearlyDesc: 'Save $900/yr',
+      planSingle: 'Per Episode', planSingleDesc: 'Any single ep · Forever',
+      planPopular: 'Best Value', planMonthly: 'Full Series', planMonthlyDesc: 'All 27 eps · Forever',
+      planYearly: '2-Series Bundle', planYearlyDesc: 'Pick any 2 series',
       unlockBtn: '🔓 Unlock Now · Watch Everything',
       paywallTitle: 'The Plot Thickens', paywallTitleSpan: ' — Unlock It',
-      paywallSub: "You've seen 3 episodes. You know this isn't boring porn.<br/>200+ series. 200+ wild, twisted, explicit storylines. All yours.",
+      paywallSub: "You've seen 2 episodes. You know this isn't boring porn.<br/>Unlock the remaining 25 episodes — or grab the 2-series bundle and save.",
       payMicro1: 'Secure payment', payMicro2: 'Cancel anytime', payMicro3: 'Private billing',
       featTitle: "This Isn't Porn. It's Wilder.",
       featGrid: FEAT_GRID.en,
@@ -969,7 +1261,7 @@
       stickyTitle: 'Ep 4: Into the Wild 😈 — Can they save the world?',
       stickySub: 'Unlock to keep watching', stickyBtn: 'Unlock →',
       modalTitle: 'The Plot Gets', modalTitleSpan: ' Wild 😈',
-      modalSub: "You've seen 3 episodes. This is NOT your average adult content.<br/>Unlock the full twisted story — and 200+ more series like it.",
+      modalSub: "You've seen 2 episodes. This is NOT your average adult content.<br/>Unlock the full 27-episode story — or grab the 2-series bundle and save $39.",
       modalUnlockBtn: '🔓 Unlock Now · Keep Watching',
       ticker: TICKER.en,
       footer: '© 2026 FlickFire · Adults 18+ Only · All content is fictional',
@@ -979,24 +1271,24 @@
       h1: '只有群P的性仪式<br/><span class="hl">才能阻止撒旦毁灭世界。</span>',
       sub: '这不是普通做爱视频。FlickFire是AI剧本驱动的成人短剧——脑洞大开的剧情，禁忌场景，你从未想象过的故事。前3集完全免费。',
       watchBtn: '免费观看 →',
-      micro1: '前3集免费', micro2: 'AI生成内容', micro3: '随时取消',
+      micro1: '前2集免费', micro2: 'AI生成内容', micro3: '永久解锁',
       dramaTag: '😈 本周第一 · AI短剧',
       dramaTitle: '《只有群P的性仪式<br/>才能阻止撒旦》',
       secLabel1: '本周第一', secTitle1: '今晚必看', secSub1: '前3集免费 · 解锁更多',
-      dramaEp: '共20集 · 每集3分钟', playBtn: '▶ 立即观看', freeTag: '前3集免费',
+      dramaEp: '共27集 · 每集1~2分钟', playBtn: '▶ 立即观看', freeTag: '前2集免费',
       epList: EP_LIST.zh,
-      moreBtn: '查看全部20集 · 解锁完整剧情 →',
+      moreBtn: '查看全部27集 · 解锁完整剧情 →',
       secLabel2: '正在热播', secTitle2: '为你推荐', secSub2: '滑动探索 →',
       dramaCards: DRAMA_CARDS.zh,
       notPornBox: NOT_PORN.zh,
       stat1l: '全球会员', stat2l: '独家系列',
       stat3n: '每日', stat3l: '更新剧集', stat4l: '超高清画质',
-      planSingle: '单部剧集', planSingleDesc: '仅限本剧',
-      planPopular: '最受欢迎', planMonthly: '月度会员', planMonthlyDesc: '无限观看',
-      planYearly: '年度会员', planYearlyDesc: '省$900/年',
+      planSingle: '单集解锁', planSingleDesc: '任意1集 · 永久',
+      planPopular: '超值之选', planMonthly: '全剧解锁', planMonthlyDesc: '全27集 · 永久',
+      planYearly: '双剧套餐', planYearlyDesc: '任选2部 · 永久',
       unlockBtn: '🔓 立即解锁 · 全部观看',
       paywallTitle: '剧情越来越精彩', paywallTitleSpan: ' — 立即解锁',
-      paywallSub: '你已经看了3集。你知道这不是普通的成人内容。<br/>200+系列，200+脑洞剧情，全部等你解锁。',
+      paywallSub: '你已经看了2集。你知道这不是普通的成人内容。<br/>解锁剩余25集，或选双剧套餐一次解锁两部。',
       payMicro1: '安全支付', payMicro2: '随时取消', payMicro3: '隐私账单',
       featTitle: '这不是A片。比A片更刺激。',
       featGrid: FEAT_GRID.zh,
