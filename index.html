@@ -509,6 +509,140 @@
     .av-pct{font-size:10px;color:var(--red);font-weight:800;}
     .av-bar{width:100%;height:3px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden;margin-top:2px;}
     .av-fill{height:100%;background:var(--grad);border-radius:999px;}
+
+    /* ─── DESKTOP RESPONSIVE ─── */
+    @media (min-width: 768px) {
+      body{padding-bottom:100px;}
+      .hero-nav{padding:24px 40px;}
+      .hero-content{padding:0 40px 52px;max-width:680px;}
+      .hero h1{font-size:clamp(30px,4vw,52px);}
+      .hero-sub{font-size:15px;max-width:480px;}
+      .hero-btn{max-width:420px;}
+
+      .section{padding:52px 0 12px;}
+      .sec-head{padding:0 40px;}
+      .sec-title{font-size:28px;}
+
+      .drama-hero{margin:0 40px 32px;}
+      .drama-hero-info h2{font-size:24px;}
+      .drama-hero-info{max-width:55%;}
+
+      .ep-list{padding:0 40px;}
+      .more-btn{margin:16px 40px 0;}
+
+      .drama-carousel{padding:0 40px 16px;}
+      .d-card{flex:0 0 40vw;max-width:280px;}
+
+      .cast-section{padding:44px 0 16px;}
+      .cast-strip{padding:8px 40px 20px;gap:22px;}
+
+      .stats-section{padding:36px 40px;}
+      .stats-grid{grid-template-columns:repeat(4,1fr);}
+
+      .paywall{margin:8px 40px 40px;padding:36px 32px;}
+
+      .vote-section{padding:8px 40px 40px;}
+
+      .features{padding:8px 40px 40px;}
+      .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+
+      .privacy{padding:32px 40px;}
+      .priv-list{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;}
+
+      .final-cta{padding:56px 40px;}
+      .final-cta h2{font-size:34px;}
+      .final-btn{max-width:440px;margin:0 auto;}
+
+      .sticky-bar{padding:14px 40px;}
+
+      .modal-overlay{align-items:center;justify-content:center;}
+      .modal-sheet{max-width:560px;width:100%;border-radius:26px;margin:0 20px;}
+    }
+
+    @media (min-width: 1200px) {
+      /* ── Centered content container ── */
+      .section,.cast-section,.stats-section,.vote-section,.features,.privacy,.final-cta{
+        max-width:1080px;margin-left:auto;margin-right:auto;
+      }
+      .paywall{max-width:980px;margin-left:auto;margin-right:auto;}
+
+      .hero-nav{padding:30px 60px;}
+      .hero-content{padding:0 64px 68px;max-width:680px;}
+      .hero h1{font-size:clamp(38px,3.2vw,60px);}
+      .hero-sub{font-size:16px;max-width:540px;}
+      .hero-btn{max-width:400px;font-size:18px;padding:20px 24px;}
+      .hero-micro{font-size:12px;}
+
+      .section{padding:60px 0 16px;}
+      .sec-head{padding:0 56px;}
+      .sec-title{font-size:34px;}
+      .sec-sub{font-size:14px;}
+
+      .drama-hero{margin:0 56px 40px;}
+      .drama-hero-info h2{font-size:28px;}
+
+      /* Episode list: 2 columns */
+      .ep-list{
+        padding:0 56px;
+        display:grid;grid-template-columns:1fr 1fr;gap:12px;
+      }
+      .more-btn{margin:20px 56px 0;}
+
+      /* Drama carousel: 4-col grid */
+      .drama-carousel{
+        display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+        padding:0 56px 24px;overflow:visible;
+      }
+      .d-card{flex:none;max-width:none;width:auto;aspect-ratio:3/4;}
+
+      .cast-section{padding:56px 0 20px;}
+      .cast-strip{padding:8px 56px 24px;gap:28px;}
+      .cast-card{flex:0 0 90px;}
+      .cast-avatar-wrap{width:80px;height:80px;}
+      .cast-avatar{width:80px;height:80px;}
+      .cast-name{font-size:12px;}
+
+      .stats-section{padding:52px 56px;}
+      .stat-pill .n{font-size:38px;}
+      .stat-pill .l{font-size:13px;}
+
+      .paywall{padding:52px 56px;margin-bottom:52px;}
+      .paywall h3{font-size:30px;}
+      .paywall-plans{gap:14px;}
+      .plan{padding:22px 16px;}
+      .plan-price{font-size:28px;}
+      .plan-period{font-size:11px;}
+      .unlock-btn{font-size:18px;padding:20px 24px;}
+
+      /* Vote section: header full-width, cards side by side */
+      .vote-section{
+        display:grid;grid-template-columns:1fr 1fr;gap:20px;
+        padding:8px 56px 52px;
+      }
+      .vote-header{grid-column:1 / -1;}
+      .vote-card{margin-bottom:0;}
+
+      /* Actress vote grid: 3 cols → 6 cols on big screen */
+      .actress-vote-grid{grid-template-columns:repeat(6,1fr);}
+      .av-img{width:56px;height:56px;}
+      .av-name{font-size:12px;}
+
+      .features{padding:8px 56px 52px;}
+      .feat-title{font-size:28px;}
+
+      .privacy{padding:52px 56px;}
+
+      .final-cta{padding:80px 56px;}
+      .final-cta h2{font-size:42px;}
+      .final-btn{max-width:500px;font-size:20px;padding:22px 28px;}
+      .final-cta p{font-size:15px;}
+
+      .sticky-bar{padding:16px 24px;}
+      .sticky-inner{max-width:1080px;margin:0 auto;}
+      .sticky-copy strong{font-size:16px;}
+
+      .modal-sheet{max-width:600px;margin:0;}
+    }
   </style>
 </head>
 <body>
